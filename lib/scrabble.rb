@@ -1,7 +1,17 @@
 class Scrabble
 
   def score(word)
-    1
+    #1 this let us brute force a, since it is one, and assures us that our class is working
+    # word.point_values
+    # loop do |words|
+    #   words.point_values.to_a
+    #   break if words.nil?
+    # end
+  #   1
+  # else
+  #   2
+
+
   end
 
   def point_values
@@ -14,5 +24,13 @@ class Scrabble
       "U"=>1, "V"=>4, "W"=>4, "X"=>8,
       "Y"=>4, "Z"=>10
     }
+
+    point_values.to_a
   end
+
+
 end
+
+p test = Scrabble.new
+p test.score("z")
+# p point_values.inspect
