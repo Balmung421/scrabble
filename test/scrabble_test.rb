@@ -5,6 +5,14 @@ require 'minitest/pride'
 require 'pry'
 
 class ScrabbleTest < Minitest::Test
+
+  def setup
+    @scrabble = Scrabble.new
+  end
+
+  def test_if_scrabble_exists
+    assert @scrabble
+  end
   def test_it_can_score_a_single_letter
     skip
     assert_equal 1, Scrabble.new.score("a")
