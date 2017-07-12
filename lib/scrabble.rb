@@ -12,15 +12,31 @@ class Scrabble
   #   1
   # else
   #   2
-  binding.pry
-  point_values.to_a #to an array
-  #if word = word in in the above array, return the value!
-  if word.nil?
-    return nil
-  else
-    word = point_values.values #this returns the value of each letter!
-    return point_value
-  #[word]
+  # binding.pry
+  # point_values.to_a #to an array
+  # #if word = word in in the above array, return the value!
+  # if word.nil?
+  #   return nil
+  # else
+  #   word = point_values.values #this returns the value of each letter!
+  #   return point_value
+  # #[word]
+  #binding.pry
+  # point_values.to_a.each do |word|
+  #   if word.nil?
+  #     return nil
+  #   else
+  #     word = word.index
+  #   end
+  #point_values.values #returns the numbers
+  #point_values.keys #returns the letter!
+  #point_values.keys.each do |key, value|
+    if word.nil?
+      return nil
+    else
+      return point_values.values[word]
+    end
+
 
 
   end
@@ -41,6 +57,6 @@ class Scrabble
 
 end
 
-p test = Scrabble.new
-p test.score("z")
+# p test = Scrabble.new
+# p test.score("z")
 # p point_values.inspect
