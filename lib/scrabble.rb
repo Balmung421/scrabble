@@ -1,3 +1,5 @@
+require 'pry'
+
 class Scrabble
 
   def score(word)
@@ -10,6 +12,15 @@ class Scrabble
   #   1
   # else
   #   2
+  binding.pry
+  point_values.to_a #to an array
+  #if word = word in in the above array, return the value!
+  if word.nil?
+    return nil
+  else
+    word = point_values.values #this returns the value of each letter!
+    return point_value
+  #[word]
 
 
   end
@@ -24,8 +35,7 @@ class Scrabble
       "U"=>1, "V"=>4, "W"=>4, "X"=>8,
       "Y"=>4, "Z"=>10
     }
-
-    point_values.to_a
+    #point_values.to_a
   end
 
 
