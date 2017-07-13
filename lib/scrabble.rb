@@ -2,7 +2,32 @@ require 'pry'
 
 class Scrabble
 
-  def score(word)
+	def point_values
+		{
+			"A"=>1, "B"=>3, "C"=>3, "D"=>2,
+			"E"=>1, "F"=>4, "G"=>2, "H"=>4,
+			"I"=>1, "J"=>8, "K"=>5, "L"=>1,
+			"M"=>3, "N"=>1, "O"=>1, "P"=>3,
+			"Q"=>10, "R"=>1, "S"=>1, "T"=>1,
+			"U"=>1, "V"=>4, "W"=>4, "X"=>8,
+			"Y"=>4, "Z"=>10
+		}
+	end
+
+	def score(word)
+		word_total = 0
+		if word.nil? || word.empty?
+			return 0
+		else
+			word.upcase.chars.each do |letter|
+				word_total += point_values[letter.upcase] #point_values method above
+			end
+		end
+		return word_total
+	end
+
+
+end
     #1 this let us brute force a, since it is one, and assures us that our class is working
     # word.point_values
     # loop do |words|
@@ -31,32 +56,11 @@ class Scrabble
   #point_values.values #returns the numbers
   #point_values.keys #returns the letter!
   #point_values.keys.each do |key, value|
-    if word.nil?
-      return nil
-    else
-      return point_values.values[word]
-    end
-
-
-
-  end
-
-  def point_values
-    {
-      "A"=>1, "B"=>3, "C"=>3, "D"=>2,
-      "E"=>1, "F"=>4, "G"=>2, "H"=>4,
-      "I"=>1, "J"=>8, "K"=>5, "L"=>1,
-      "M"=>3, "N"=>1, "O"=>1, "P"=>3,
-      "Q"=>10, "R"=>1, "S"=>1, "T"=>1,
-      "U"=>1, "V"=>4, "W"=>4, "X"=>8,
-      "Y"=>4, "Z"=>10
-    }
-    #point_values.to_a
-  end
-
-
-end
-
+#     if word.nil?
+#       return nil
+#     else
+#       return point_values.values[word]
+#     end
 # p test = Scrabble.new
 # p test.score("z")
 # p point_values.inspect

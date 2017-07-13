@@ -1,5 +1,5 @@
 gem 'minitest'
-require_relative '../lib/scrabble'
+require './lib/scrabble'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
@@ -12,6 +12,14 @@ class ScrabbleTest < Minitest::Test
 
   def test_if_scrabble_exists
     assert @scrabble
+  end
+  
+  def test_nil
+    assert_equal 0, @scrabble.score(nil)
+  end
+  
+  def test_empty_string
+    assert_equal 0, @scrabble.score("")
   end
 
   def test_if_it_can_score_a
@@ -27,14 +35,34 @@ class ScrabbleTest < Minitest::Test
   end
 
   def test_for_point_values
-
     assert_equal [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10], @scrabble.point_values.values
-
+  end
+  
+   def test_it_can_score_a_single_letter
+    assert_equal 1, @scrabble.score("a")
+    assert_equal 4, @scrabble.score("f")
   end
 
-  # def test_it_can_score_a_single_letter
-  #   #skip
-  #   assert_equal 1, Scrabble.new.score("a")
-  #   assert_equal 4, Scrabble.new.score("f")
-  # end
+  def test_two_letter_word
+    assert_equal 2, @scrabble.score("aa")
+  end
+
+  def test_other_two_letter_word
+    assert_equal 20, @scrabble.score("zz")
+  end
+
+  def _test_two_letter_word_upcase
+    assert_equal 20, @scrabble.score("ZZ")
+  end
+
+  def test_two_letter_word_mixed
+    assert_equal 20, @scrabble.score("Zz")
+  end
+
+  def test_my_cool_doggo
+    assert_equal 10, @scrabble.score("Kuma")
+  end
+
+
+
 end
