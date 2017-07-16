@@ -14,6 +14,26 @@ class Scrabble
 		}
 	end
 
+	def point_values_multiplier
+		{
+			1 => Scrabble.new(["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]),
+      2 => Scrabble.new(["d", "g"]),
+      3 => Scrabble.new(["b", "c", "m", "p"]),
+      4 => Scrabble.new(["f", "h", "v", "w", "y"]),
+      5 => Scrabble.new(["k"]),
+      8 => Scrabble.new(["j", "x"]),
+      10 => Scrabble.new(["q", "z"])
+		}
+	end
+
+	def bonus_values
+	 {
+      single: 1,
+      double: 2,
+      triple: 3
+		}
+	end
+
 	def score(word)
 		word_total = 0
 		if word.nil? || word.empty?
@@ -21,6 +41,20 @@ class Scrabble
 		else
 			word.upcase.chars.each do |letter|
 				word_total += point_values[letter.upcase] #point_values method above
+			end
+		end
+		return word_total
+	end
+
+	def score_with_multipliers(word, bonus = :single)
+		word_total = 0
+		if word.nil? || word.empty?
+			return 0
+		else
+			bonus = word.length
+			word.upcase.chars.each do |letter|
+				word_total += point_values*bonus[letter.upcase]
+				# if letter is Q multiply by 10 etc
 			end
 		end
 		return word_total

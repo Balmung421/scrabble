@@ -13,11 +13,11 @@ class ScrabbleTest < Minitest::Test
   def test_if_scrabble_exists
     assert @scrabble
   end
-  
+
   def test_nil
     assert_equal 0, @scrabble.score(nil)
   end
-  
+
   def test_empty_string
     assert_equal 0, @scrabble.score("")
   end
@@ -37,7 +37,7 @@ class ScrabbleTest < Minitest::Test
   def test_for_point_values
     assert_equal [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10], @scrabble.point_values.values
   end
-  
+
    def test_it_can_score_a_single_letter
     assert_equal 1, @scrabble.score("a")
     assert_equal 4, @scrabble.score("f")
@@ -61,6 +61,10 @@ class ScrabbleTest < Minitest::Test
 
   def test_my_cool_doggo
     assert_equal 10, @scrabble.score("Kuma")
+  end
+
+  def test_multiplier
+    assert_equal 58, @scrabble.score("sparkle")
   end
 
 
