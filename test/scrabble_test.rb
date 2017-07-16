@@ -63,8 +63,16 @@ class ScrabbleTest < Minitest::Test
     assert_equal 10, @scrabble.score("Kuma")
   end
 
-  def test_multiplier
-    assert_equal 58, @scrabble.score("sparkle")
+  def test_multipliers
+    assert_equal 9, @scrabble.score_with_multipliers("hello", [1, 2, 1, 1, 1])
+  end
+
+  def test_word_multipliers
+    assert_equal 18, @scrabble.score_with_multipliers("hello", [1,2,1,1,1], 2)
+  end
+
+  def test_7_letter_word_bonus
+    assert_equal 58, @scrabble.score_with_multipliers("sparkle", [1,2,1,3,1,2,1], 2)
   end
 
 

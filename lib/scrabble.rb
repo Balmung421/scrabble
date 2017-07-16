@@ -1,40 +1,19 @@
-require 'pry'
-
 class Scrabble
 
+
 	def point_values
-		{
-			"A"=>1, "B"=>3, "C"=>3, "D"=>2,
-			"E"=>1, "F"=>4, "G"=>2, "H"=>4,
-			"I"=>1, "J"=>8, "K"=>5, "L"=>1,
-			"M"=>3, "N"=>1, "O"=>1, "P"=>3,
-			"Q"=>10, "R"=>1, "S"=>1, "T"=>1,
-			"U"=>1, "V"=>4, "W"=>4, "X"=>8,
-			"Y"=>4, "Z"=>10
-		}
-	end
+    {
+      "A"=>1, "B"=>3, "C"=>3, "D"=>2,
+      "E"=>1, "F"=>4, "G"=>2, "H"=>4,
+      "I"=>1, "J"=>8, "K"=>5, "L"=>1,
+      "M"=>3, "N"=>1, "O"=>1, "P"=>3,
+      "Q"=>10, "R"=>1, "S"=>1, "T"=>1,
+      "U"=>1, "V"=>4, "W"=>4, "X"=>8,
+      "Y"=>4, "Z"=>10
+    }
+  end
 
-	def point_values_multiplier
-		{
-			1 => Scrabble.new(["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]),
-      2 => Scrabble.new(["d", "g"]),
-      3 => Scrabble.new(["b", "c", "m", "p"]),
-      4 => Scrabble.new(["f", "h", "v", "w", "y"]),
-      5 => Scrabble.new(["k"]),
-      8 => Scrabble.new(["j", "x"]),
-      10 => Scrabble.new(["q", "z"])
-		}
-	end
-
-	def bonus_values
-	 {
-      single: 1,
-      double: 2,
-      triple: 3
-		}
-	end
-
-	def score(word)
+  def score(word)
 		word_total = 0
 		if word.nil? || word.empty?
 			return 0
@@ -44,57 +23,18 @@ class Scrabble
 			end
 		end
 		return word_total
-	end
+  end
 
-	def score_with_multipliers(word, bonus = :single)
-		word_total = 0
-		if word.nil? || word.empty?
-			return 0
-		else
-			bonus = word.length
-			word.upcase.chars.each do |letter|
-				word_total += point_values*bonus[letter.upcase]
-				# if letter is Q multiply by 10 etc
-			end
-		end
-		return word_total
-	end
+  def score_with_multipliers(word, multipliers, word_multiplier = 1)
+    chars = word.chars
+    score = chars.map.each_with_index do |character, index|
+      score(character) * multipliers[index]
+    end.reduce(:+) #example, (5..10) sum is 45, reduce (:+) returns this sum! aka (5..10).reduce(:+) = 45! Using (:-) will return -35, because it subtracts all the numbers (5-6-7-8-9-10 = -35)
+    if word.length == 7
+      score += 10
+    end
+     score * word_multiplier
+  end
 
 
 end
-    #1 this let us brute force a, since it is one, and assures us that our class is working
-    # word.point_values
-    # loop do |words|
-    #   words.point_values.to_a
-    #   break if words.nil?
-    # end
-  #   1
-  # else
-  #   2
-  # binding.pry
-  # point_values.to_a #to an array
-  # #if word = word in in the above array, return the value!
-  # if word.nil?
-  #   return nil
-  # else
-  #   word = point_values.values #this returns the value of each letter!
-  #   return point_value
-  # #[word]
-  #binding.pry
-  # point_values.to_a.each do |word|
-  #   if word.nil?
-  #     return nil
-  #   else
-  #     word = word.index
-  #   end
-  #point_values.values #returns the numbers
-  #point_values.keys #returns the letter!
-  #point_values.keys.each do |key, value|
-#     if word.nil?
-#       return nil
-#     else
-#       return point_values.values[word]
-#     end
-# p test = Scrabble.new
-# p test.score("z")
-# p point_values.inspect
