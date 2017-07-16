@@ -1,6 +1,5 @@
 class Scrabble
 
-
 	def point_values
     {
       "A"=>1, "B"=>3, "C"=>3, "D"=>2,
@@ -19,7 +18,7 @@ class Scrabble
 			return 0
 		else
 			word.upcase.chars.each do |letter|
-				word_total += point_values[letter.upcase] #point_values method above
+				word_total += point_values[letter.upcase]
 			end
 		end
 		return word_total
@@ -29,12 +28,11 @@ class Scrabble
     chars = word.chars
     score = chars.map.each_with_index do |character, index|
       score(character) * multipliers[index]
-    end.reduce(:+) #example, (5..10) sum is 45, reduce (:+) returns this sum! aka (5..10).reduce(:+) = 45! Using (:-) will return -35, because it subtracts all the numbers (5-6-7-8-9-10 = -35)
+    end.reduce(:+)
     if word.length == 7
       score += 10
     end
      score * word_multiplier
   end
-
 
 end
